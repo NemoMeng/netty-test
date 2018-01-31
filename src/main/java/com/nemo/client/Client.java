@@ -50,10 +50,19 @@ public class Client {
     }
 
     public static void main(String args[]) throws Exception {
-        final String host = "127.0.0.1";
-        final int port = 4567;
+        for(int i=0;i<1;i++) {
+            new Thread(new Runnable() {
+                public void run() {
+                    final String host = "127.0.0.1";
+                    final int port = 4567;
 
-        new Client(host,port).start();
+                    try {
+                        new Client(host, port).start();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
     }
-
 }

@@ -7,6 +7,7 @@ package com.nemo.server;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -70,6 +71,20 @@ public class EchoServer {
                 //采用默认值
             }
         }
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    System.out.println("在线设备数量：" + ServerContext.getOnlineClientSize());
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
         new EchoServer().bind(port);
     }
 

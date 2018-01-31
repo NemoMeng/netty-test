@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome.</title>
+</head>
+<body>
+
+    <input type="text" name="name" id="name" />
+    <input type="text" name="msg" id="msg" />
+    <input type="button" id="btn" value="发送" />
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+   $('#btn').click(function (){
+       var name = $('#name').val();
+       var msg = $('#msg').val();
+       var obj = new Object();
+       obj.name = name;
+       obj.msg = msg;
+       $.post('/push',obj,function (){
+
+       });
+   });
+</script>
+</body>
+</html>
